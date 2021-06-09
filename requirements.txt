@@ -6,3 +6,4 @@ terminaltables
 tqdm
 opencv-python
 shapely
+mayavi
