@@ -1,1 +1,9 @@
+cd sample_data/
+!git clone https://github.com/rickkcir/Complex-YOLOv3
+cd Complex-YOLOv3/
+!pip install -r requirements.txt
+cd checkpoints/
+!python download_weights.py
+cd ..
+!python test_detection.py --split=sample --folder=sampledata  
 
