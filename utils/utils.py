@@ -299,7 +299,7 @@ def non_max_suppression_rotated_bbox(prediction, conf_thres=0.95, nms_thres=0.4)
             large_overlap = torch.from_numpy(large_overlap)
             label_match = detections[0, -1] == detections[:, -1]
             # Indices of boxes with lower confidence scores, large IOUs and matching labels
-            invalid = large_overlap & label_match
+            invalid = np.logical_and(large_overlap,label_match)
             weights = detections[invalid, 6:7]
             # Merge overlapping bboxes by order of confidence
             detections[0, :6] = (weights * detections[invalid, :6]).sum(0) / weights.sum()
