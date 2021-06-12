@@ -103,7 +103,7 @@ if __name__ == "__main__":
     # Set up model
     model = Darknet(opt.model_def, img_size=opt.img_size).to(device)
     # Load checkpoint weights
-    model.load_state_dict(torch.load(opt.weights_path))
+    model.load_state_dict(torch.load(opt.weights_path,map_location='cpu'))
     # Eval mode
     model.eval()
     
@@ -111,7 +111,7 @@ if __name__ == "__main__":
     data_loader = torch_data.DataLoader(dataset, 1, shuffle=False)
 
     Tensor = torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
-
+    i=0
     start_time = time.time()                        
     for index, (img_paths, bev_maps) in enumerate(data_loader):
         
@@ -156,9 +156,10 @@ if __name__ == "__main__":
         objects_pred = predictions_to_kitti_format(img_detections, calib, img2d.shape, opt.img_size)  
         
         img2d = mview.show_image_with_boxes(img2d, objects_pred, calib, False)
-        
+        Im_name="./output/"+str(i)+".png"
         #cv2.imshow("bev img", RGB_Map)
         #cv2.imshow("img2d", img2d)
-
+        cv2.imwrite(Im_name,img2d)
+        i=i+1
         if cv2.waitKey(0) & 0xFF == 27:
             break
