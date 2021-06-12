@@ -157,8 +157,8 @@ if __name__ == "__main__":
         
         img2d = mview.show_image_with_boxes(img2d, objects_pred, calib, False)
         
-        cv2.imshow("bev img", RGB_Map)
-        cv2.imshow("img2d", img2d)
+        #cv2.imshow("bev img", RGB_Map)
+        #cv2.imshow("img2d", img2d)
 
         if cv2.waitKey(0) & 0xFF == 27:
             break
