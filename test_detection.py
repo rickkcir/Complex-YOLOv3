@@ -125,8 +125,9 @@ if __name__ == "__main__":
         
         end_time = time.time()
         print(f"FPS: {(1.0/(end_time-start_time)):0.2f}")
+        print(end_time-start_time)
         start_time = end_time
-
+        
         img_detections = []  # Stores detections for each image index
         img_detections.extend(detections)
 
